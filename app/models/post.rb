@@ -3,5 +3,5 @@ class Post < ActiveRecord::Base
  	validates :name, :title, :content, presence: true
 	validates :title, length: { minimum: 5 }
 
-	has_many :comments
+	has_many :comments, dependent: :destroy
 end
