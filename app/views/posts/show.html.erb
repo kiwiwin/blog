@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @post.name %>
-</p>
 
 <p>
-  <b>Title:</b>
-  <%= @post.title %>
+	<h2 style="color:yellow;font-family:purisa" align="center">
+	  <%= @post.title %>
+	</h2>	
+	<h4 sytle="color:white" align="center">
+		<%= "created at: #{@post.created_at}" %>
+	</h4>
 </p>
 
+<hr/>
+
 <p>
-  <b>Content:</b>
-  <%= @post.content %>
+  <%= strip_tags(@post.content) %>
 </p>
 
 <hr />

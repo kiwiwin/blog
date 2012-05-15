@@ -1,27 +1,35 @@
-<h1>Listing posts</h1>
+<h1 style="font-size:330%;font-family:purisa;">My Posts</h1>
+<h3 style="font-family:purisa;color:grey" align="center"> white, poor, ugly </h3>
+<hr/>
+<a href="/"> HOME </a>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.name %></td>
-    <td><%= post.title %></td>
-    <td><%= post.content %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+<!--    <td><%= post.name %></td>-->
+		
+    <td > 
+			<h4 style="color:white">
+				<%= post.created_at %>
+<!--				<%= link_to 'Show', post %>-->
+ 				<%= link_to 'Edit', edit_post_path(post) %>
+    		<%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
+			</h4>
+			
+   
+			<h3 style="font-family:purisa;font-size:150%;"><b><%= link_to post.title, post, {style: "color:yellow"} %></b></h3>
+			
+
+		</td>
+<!--    <td><%= post.content %></td>-->
+
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<h3 style="font-family:purisa;color:white">
+	<%= link_to '>> New Post', new_post_path, {style: "color:white"} %>
+</h3>
