@@ -29,7 +29,7 @@ class PostsControllerTest < ActionController::TestCase
   test "should create post" do
 		authenticate
     assert_difference('Post.count') do
-      post :create, post: { content: @post.content, name: @post.name, title: @post.title }
+      post :create, post: { content: @post.content, title: @post.title }
     end
 
     assert_redirected_to post_path(assigns(:post))
@@ -37,7 +37,7 @@ class PostsControllerTest < ActionController::TestCase
 
 	test "should redirect to 401 for unauthenticated user create post" do
     assert_no_difference('Post.count') do
-      post :create, post: { content: @post.content, name: @post.name, title: @post.title }
+      post :create, post: { content: @post.content, title: @post.title }
     end
 
     assert_response 401
@@ -61,12 +61,12 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should update post" do
 		authenticate
-    put :update, id: @post, post: { content: @post.content, name: @post.name, title: @post.title }
+    put :update, id: @post, post: { content: @post.content, title: @post.title }
     assert_redirected_to post_path(assigns(:post))
   end
 
   test "should redirect to 401 for authenticated user update post" do
-    put :update, id: @post, post: { content: @post.content, name: @post.name, title: @post.title }
+    put :update, id: @post, post: { content: @post.content, title: @post.title }
     assert_response 401
   end
 
