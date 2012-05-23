@@ -10,10 +10,12 @@
 <td>
 	<%= comment.body %>
 <td/>
-<td>
-  <%= link_to 'Destroy Comment', [comment.post, comment],
+<% if session[:admin] != nil %>
+	<td>
+  	<%= link_to 'Destroy Comment', [comment.post, comment],
                :confirm => 'Are you sure?',
                :method => :delete %>
-<td/>
+	<td/>
+<% end %>
 </tr>
 </table>

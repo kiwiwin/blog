@@ -11,8 +11,10 @@
 			<h4 style="color:white">
 				<%= post.created_at %>
 <!--				<%= link_to 'Show', post %>-->
- 				<%= link_to 'Edit', edit_post_path(post) %>
-    		<%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
+				<% if session[:admin] != nil %>
+	 				<%= link_to 'Edit', edit_post_path(post) %>
+	    		<%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
+				<% end %>
 			</h4>
 			
    
@@ -26,6 +28,8 @@
 
 <br />
 
-<h3 style="font-family:purisa;color:white">
-	<%= link_to '>> New Post', new_post_path, {style: "color:white"} %>
-</h3>
+<% if session[:admin] != nil %>
+	<h3 style="font-family:purisa;color:white">
+		<%= link_to '>> New Post', new_post_path, {style: "color:white"} %>
+	</h3>
+<% end %>

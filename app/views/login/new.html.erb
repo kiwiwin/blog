@@ -1,0 +1,28 @@
+<div class="depot_form">
+	<% if flash[:alert] %>
+		<p id="notice"><%= flash[:alert] %></p>
+	<% end %>
+	
+	<% if session[:admin] == nil %>
+		<%= form_tag do %>
+			<fieldset>
+				<legend>Please Log In</legend>
+				<div>
+					<label for="admin">Admin:</label>
+					<%= text_field_tag :admin, params[:name] %>
+				</div>
+				<div>
+				<label for="password">Password:</label>
+					<%= text_field_tag :password, params[:password] %>
+				</div>
+				<div>
+					<%= submit_tag "Login" %>
+				</div>
+			</fieldset>
+		<% end %>
+	<% else %>
+		<div> You are already Logged in </div>
+			<%= button_to 'Logout', login_path, method: :delete %>
+	<% end %>
+</div>
+

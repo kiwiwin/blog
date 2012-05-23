@@ -1,4 +1,13 @@
 Blog::Application.routes.draw do
+
+	controller :login do
+	  get "login" => :new
+ 	 
+		post "login" => :create
+
+	  delete "login" => :destroy
+	end
+
   resources :posts do
 		resources :comments
 	end
