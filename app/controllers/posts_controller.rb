@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
-	http_basic_authenticate_with name: 'kiwi', password: '314', except: [:index, :show]
+#	http_basic_authenticate_with name: 'kiwi', password: '314', except: [:index, :show]
+
+	def check_admin
+		session[:admin] != nil
+	end
 
   # GET /posts
   # GET /posts.json
@@ -26,22 +30,34 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+		if check_admin == false
+				redirect_to login_url
+				return 
+		end
+	  @post = Post.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
-    end
+	  respond_to do |format|
+	    format.html # new.html.erb
+	    format.json { render json: @post }
+	  end
   end
 
   # GET /posts/1/edit
   def edit
+		if check_admin == false
+				redirect_to login_url
+				return 
+		end
     @post = Post.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
+		if check_admin == false
+				redirect_to login_url
+				return 
+		end
     @post = Post.new(params[:post])
 
     respond_to do |format|
@@ -58,6 +74,10 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
+		if check_admin == false
+			redirect_to login_url
+			return 
+		end
     @post = Post.find(params[:id])
 
     respond_to do |format|
@@ -74,6 +94,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+		if check_admin == false
+			redirect_to login_url
+			return 
+		end
     @post = Post.find(params[:id])
     @post.destroy
 

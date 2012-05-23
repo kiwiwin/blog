@@ -6,7 +6,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
 	def authenticate 
-		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials("kiwi","314")
+		session[:admin] = "admin"
+#		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials("kiwi","314")
 	end
 
   test "should get index" do
@@ -23,7 +24,8 @@ class PostsControllerTest < ActionController::TestCase
 
 	test "should redirect to 401 with unauthenticated user get new" do
     get :new
-    assert_response 401
+#    assert_response 401
+		assert_redirected_to login_url
 	end
 
   test "should create post" do
@@ -40,7 +42,8 @@ class PostsControllerTest < ActionController::TestCase
       post :create, post: { content: @post.content, title: @post.title }
     end
 
-    assert_response 401
+#    assert_response 401
+		assert_redirected_to login_url
 	end
 
   test "should show post" do
@@ -56,7 +59,8 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should redirect to 401 for authenticated user get edit" do
     get :edit, id: @post
-    assert_response 401
+#    assert_response 401
+		assert_redirected_to login_url
   end
 
   test "should update post" do
@@ -67,7 +71,8 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should redirect to 401 for authenticated user update post" do
     put :update, id: @post, post: { content: @post.content, title: @post.title }
-    assert_response 401
+#    assert_response 401
+		assert_redirected_to login_url
   end
 
   test "should destroy post" do
@@ -84,6 +89,7 @@ class PostsControllerTest < ActionController::TestCase
       delete :destroy, id: @post
     end
 
-    assert_response 401
+#    assert_response 401
+		assert_redirected_to login_url
   end
 end
